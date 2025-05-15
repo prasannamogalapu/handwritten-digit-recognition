@@ -1,0 +1,60 @@
+PROJECT CONCLUSION
+Objective :
+The goal of this project was to build and evaluate different machine learning models to classify handwritten digits from the MNIST dataset, which contains images of digits from 0 to 9. The models evaluated include Support Vector Machine (SVM), K-Nearest Neighbors (KNN), Artificial Neural Networks (ANN), and Convolutional Neural Networks (CNN). The performance of these models was assessed based on accuracy
+
+Model Implementations
+1. Support Vector Machine (SVM) :
+SVM with a linear kernel was applied to the flattened and normalized images
+Hyperparameter tuning was performed using RandomizedSeachCV
+ACCURACY : 0.9777
+Insight : SVM performed well on the dataset, achieving a high accuracy of nearly 98%. This indicates SVM's robustness in dealing with image classification tasks even with flattened data.
+2. K-Nearest Neighbors (KNN) :
+The KNN algorithm was applied with various values of k, and the optimal number of neighbors was determined using an elbow plot.
+ACCURACY : 0.9681
+Insight: KNN achieved a respectable accuracy but slightly lagged behind SVM and CNN. The simplicity of the algorithm limits its performance on larger datasets like MNIST.
+3. Artificial Neural Network (ANN) :
+A feedforward neural network was implemented using one hidden layer and various activation functions.
+ACCURACY : 0.9245
+Insight: While ANN performed reasonably well, it did not achieve as high accuracy as CNN, reflecting the advantage of CNNs in image-based tasks where local patterns are crucial.
+4. Convolutional Neural Network (CNN) :
+CNN with multiple convolutional and pooling layers was implemented. This model effectively captured spatial hierarchies in the data.
+ACCURACY : 0.9881
+Insight: CNN outperformed all other models, achieving the highest accuracy of 98.81%. This shows the power of convolutional layers in handling image data, as they can capture both low-level and high-level features.
+Accuracy Comparision :
+A bar chart comparing the accuracy scores of SVM, KNN, ANN, and CNN was created to visualize model performance.
+Final_Result =pd.DataFrame({'MODEL': ['SVM','KNN','ANN','CNN'],'ACCURACY' : [svm_acc_test,knn_acc_test,ann_acc,cnn_acc]})
+Final_Result
+MODEL	ACCURACY
+0	SVM	0.9777
+1	KNN	0.9681
+2	ANN	0.9245
+3	CNN	0.9881
+from tabulate import tabulate
+print("MODEL COMPARISIONS:")
+print(tabulate(Final_Result,headers ='keys',tablefmt= 'grid',showindex = False))
+MODEL COMPARISIONS:
++---------+------------+
+| MODEL   |   ACCURACY |
++=========+============+
+| SVM     |     0.9777 |
++---------+------------+
+| KNN     |     0.9681 |
++---------+------------+
+| ANN     |     0.9245 |
++---------+------------+
+| CNN     |     0.9881 |
++---------+------------+
+plt.figure(figsize =(10,6))
+sns.barplot(data = Final_Result,x = 'MODEL', y = 'ACCURACY')
+plt.title('MODEL COMPARISIONS')
+plt.show()
+​
+​
+
+CONCLUSION :
+Best Model :
+The CNN model achieved the highest accuracy (0.9881) and demonstrated its superiority for image classification tasks. CNN's ability to capture local patterns and features makes it ideal for the MNIST dataset.
+Strong Performance :
+SVM also performed well, with an accuracy of 0.9777, closely following CNN. KNN, although simple, achieved a decent accuracy of 0.9681, while ANN, with 0.9245, was effective but less robust than CNN.
+Key Insights :
+CNN's dominance reaffirms that for image-related tasks, models like CNN that can handle spatial hierarchies are more suitable than simpler methods like KNN or even SVM.
